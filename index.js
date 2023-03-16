@@ -43,14 +43,13 @@ function createPerson(name, age, location) {
     location: location,
   };
 }
-
 const musa = createPerson("Musa Dawodu", "19 years", "Lekki, Lagos State");
 
 console.log(musa);
 
 
 // (B) Also, implement a factory function createJambScores() that takes eng, govt, lit, crk as arguments. 
-// Then create an object representing Muse’s JAMB scores.Add the object as a property to Musa object you created above in (a) above
+// Then create an object representing Muse’s JAMB scores. Add the object as a property to Musa object you created above in (a) above
 function createJambScores(eng, govt, lit, crk) {
   return {
     eng: eng,
@@ -59,10 +58,35 @@ function createJambScores(eng, govt, lit, crk) {
     crk: crk,
   };
 }
+// const musaJambScores = createJambScores(70, 85, 82, 94);
+// console.log(musaJambScores);
 
-const jambScores = createJambScores(70, 85, 82, 94);
+// SOLUTION TO PART B AFTER REVIEW 
+const musaJambScores = createJambScores(70, 85, 82, 94);
 
-console.log(jambScores);
+musa.jambScores = musaJambScores; // added jamscores object as property to musa object
+
+console.log(musa);
+
+// Merging musa and musa jamb scores objects
+// const musaInfo = Object.assign(musa, musaJambScores);
+// console.log({musa}); // outout: musa's info and jambscore
+
+// Question 3 solved using factory setting all through
+function createPerson(name, age, location, jambScores) {
+  return {
+    name: name,
+    age: age,
+    location: location,
+    jambScores: jambScores
+  };
+}
+
+const musaJambScores2 = createJambScores(70, 85, 82, 94);
+const musa2 = createPerson("Musa Dawodu", "19 years", "Lekki, Lagos State", musaJambScores2);
+
+console.log(musa2);
+
 
 
 /** Question 4 - OBJECT CLONING
@@ -92,7 +116,7 @@ console.log({ thirdLanguage });
 
 
 // JSON.parse(JSON.stringify())
-const fourthLanguage = JSON.parse;
+const fourthLanguage = JSON.parse(JSON.stringify(language));
 fourthLanguage.dialet = "ijaw";
 
 console.log({language});
